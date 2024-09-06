@@ -1,7 +1,7 @@
 version: '3'
 services:
   xboard:
-    image: ghcr.io/cedar2025/xboard:latest
+    image: ghcr.io/greatbody/xboard:latest
     volumes:
       - ./.env:/www/.env
       - ./.docker/.data/:/www/.docker/.data/
@@ -9,6 +9,9 @@ services:
       - redis-socket:/run/redis-socket # 挂载socket
     environment:
       - docker=true #用于给安装脚本判断是否为docker环境
+      - enable_sqlite=true
+      - enable_redis=true
+      - admin_account=admin@test.com
     depends_on:
       - redis
     network_mode: host
